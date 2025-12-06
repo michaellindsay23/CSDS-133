@@ -1,6 +1,8 @@
 from types import NoneType
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 import csv
 
@@ -137,9 +139,42 @@ sorted_keys = sorted(f2p.keys(), key=lambda k: len(f2p[k]), reverse=True)
 for key in sorted_keys:
     free[key] = pd.Series(f2p[key])
 
-print(priced)
-print(free)
 
+
+# Heatmap
+players = []
+price = []
+month = []
+
+m = []
+for l in data.keys():
+    m.append(l)
+
+for column in priced:
+    for item in priced[column]:
+        try:
+            players.append(item[0])
+            price.append(item[1])
+
+            for i in range(1, len(m)+1):
+                if m[i-1] == column:
+                    month.append(i)
+        except:
+            continue
+
+data = {
+    "month": month,
+    "players": players,
+    "price": price
+}
+
+df = pd.DataFrame(data)
+
+print(df)
+
+sns.heatmap(df.corr(), annot=True, cmap="plasma")
+
+plt.savefig('heatmap.png')
 
 
 # NOTE: Usage of data from the frame will almost certainly need to be in a for loop format due to the use of tuples
