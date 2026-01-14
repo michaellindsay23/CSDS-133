@@ -1,0 +1,2 @@
+﻿1. Download the data folder and Player and Price Graphs.ipynb. These two things should be in the same folder. Note that Player and Price Graphs.ipynb contains the code from data_compliation.py
+2. Run all blocks of code in Player and Price Graphs.ipynb from top to bottom. Note that block three is just a colorless version of block four, and can be skipped.
